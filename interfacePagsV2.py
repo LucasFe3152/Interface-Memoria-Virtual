@@ -182,13 +182,13 @@ def atualizar_tabela():
     for widget in frame_tabela.winfo_children():
         widget.destroy()
         
-    LARG_TABELA = 15
+    LARG_TABELA = 17
     TAM_FONTE_TABELA = 11
 
     # Cabeçalho
     tk.Label(frame_tabela, text="Página", width=LARG_TABELA, borderwidth=1, relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA, "bold")).grid(row=0, column=0)
     tk.Label(frame_tabela, text="Quadro", width=LARG_TABELA, borderwidth=1, relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA, "bold")).grid(row=0, column=1)
-    tk.Label(frame_tabela, text="Válido", width=LARG_TABELA, borderwidth=1, relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA, "bold")).grid(row=0, column=2)
+    tk.Label(frame_tabela, text="Válido", width=LARG_TABELA-5, borderwidth=1, relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA, "bold")).grid(row=0, column=2)
 
     # Dados da tabela - mostrar todas as 16 páginas virtuais
     for pagina in range(NUM_PAGINAS_VIRTUAIS):
@@ -205,7 +205,7 @@ def atualizar_tabela():
             tk.Label(frame_tabela, text=quadro_texto, width=LARG_TABELA, borderwidth=1, 
                     relief="solid", bg=color, font=("Arial", TAM_FONTE_TABELA)).grid(row=pagina+1, column=1)
             
-            tk.Label(frame_tabela, text=str(dados["valido"]), width=LARG_TABELA, borderwidth=1, 
+            tk.Label(frame_tabela, text=str(dados["valido"]), width=LARG_TABELA-5, borderwidth=1, 
                     relief="solid", bg=color, font=("Arial", TAM_FONTE_TABELA)).grid(row=pagina+1, column=2)
         else:
             # Página não carregada ainda
@@ -213,7 +213,7 @@ def atualizar_tabela():
                     relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA)).grid(row=pagina+1, column=0)
             tk.Label(frame_tabela, text="-", width=LARG_TABELA, borderwidth=1, 
                     relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA)).grid(row=pagina+1, column=1)
-            tk.Label(frame_tabela, text="0", width=LARG_TABELA, borderwidth=1, 
+            tk.Label(frame_tabela, text="0", width=LARG_TABELA-5, borderwidth=1, 
                     relief="solid", bg="lightgray", font=("Arial", TAM_FONTE_TABELA)).grid(row=pagina+1, column=2)
 
 def destacar_enderecos(end_virtual, end_fisico, pagina_virtual, quadro, deslocamento):
@@ -260,7 +260,7 @@ def destacar_enderecos(end_virtual, end_fisico, pagina_virtual, quadro, deslocam
     
     txt_saida.insert(tk.END, "Legenda:\n")
     txt_saida.insert(tk.END, "Azul", "azul")
-    txt_saida.insert(tk.END, " = Index | ")
+    txt_saida.insert(tk.END, " = Index\n")
     txt_saida.insert(tk.END, "Vermelho", "vermelho")
     txt_saida.insert(tk.END, " = Deslocamento")
 
@@ -300,9 +300,9 @@ lbl_enderecos = tk.Label(frame_esquerda, text="Tradução de Endereços",
                         bg="lightblue", font=("Arial", 14, "bold"))
 lbl_enderecos.pack(pady=10)
 
-txt_saida = tk.Text(frame_esquerda, height=12, width=45, font=("Courier", 11))
-txt_saida.tag_config("azul", foreground="blue", font=("Courier", 10, "bold"))
-txt_saida.tag_config("vermelho", foreground="red", font=("Courier", 10, "bold"))
+txt_saida = tk.Text(frame_esquerda, height=12, width=45, font=("Courier", 13))
+txt_saida.tag_config("azul", foreground="blue", font=("Courier", 11, "bold"))
+txt_saida.tag_config("vermelho", foreground="red", font=("Courier", 11, "bold"))
 txt_saida.config(state="disabled")
 txt_saida.pack(pady=10, padx=10)
 
